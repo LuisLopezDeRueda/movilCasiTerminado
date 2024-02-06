@@ -1,0 +1,34 @@
+export class VidasJ2 {
+ 
+    constructor(scene, initialLives){
+        this.relatedScene = scene;
+        this.initialLives = initialLives;
+    }
+ 
+    create() {
+        let displacement = 65;
+        let firstPosition = 20 - ((this.initialLives) * displacement);
+        this.liveImages = this.relatedScene.physics.add.staticGroup({
+          setScale: { x: 0.085, y: 0.085 },
+          key: 'corazon',
+          frameQuantity: this.initialLives,
+          gridAlign: {
+            width: this.initialLives,
+            height: 1,
+            cellWidth: displacement - 15,
+            cellHeight: 30,
+            x: firstPosition,
+            y: -180
+          }
+        });
+      }
+      liveLost() {
+        if (this.liveImages.countActive() == 1) {
+          this.relatedScene.endGame();
+          return false;
+        }
+        let currentLiveLost = this.liveImages.getFirstAlive();
+        currentLiveLost.disableBody(true, true);
+        return true;
+      }
+}
