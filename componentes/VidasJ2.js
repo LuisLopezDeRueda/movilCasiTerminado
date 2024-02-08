@@ -23,10 +23,11 @@ export class VidasJ2 {
   }
 
   liveLost() {
-      if (this.liveImages.countActive() == 1) {
-          this.relatedScene.endGame(); // Llamada al método endGame sin argumentos
-          return false;
-      }
+    if (this.liveImages.countActive() == 1) {
+        this.relatedScene.endGame(); // Llamada al método endGame sin argumentos
+        return false;
+    }
+
 
       let currentLiveLost = this.liveImages.getFirstAlive();
       currentLiveLost.disableBody(true, true);
